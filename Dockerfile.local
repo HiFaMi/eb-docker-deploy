@@ -1,0 +1,7 @@
+FROM            eb-docker:base
+MAINTAINER      rlaalsrbgk@gmail.com
+
+ENV             BUILD_MODE              locasl
+ENV             DJANGO_SETTINGS_MODULE  config.settings.local
+
+COPY            .       /srv/project
