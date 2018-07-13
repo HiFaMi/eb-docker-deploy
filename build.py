@@ -19,6 +19,9 @@ if args.mode == 'base':
 elif args.mode == 'local':
     subprocess.call('docker build -t eb-docker:local -f Dockerfile.local .', shell=True)
 
+elif args.mode == 'dev':
+    subprocess.call('docker build -t eb-docker:dev -f Dockerfile.dev .', shell=True)
+
 else:
     while True:
         user_input = input('Select mode:\n1: base\n2: local\n3: production\nChoice: ')
