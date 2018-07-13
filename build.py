@@ -17,10 +17,22 @@ if args.mode == 'base':
         os.remove('requirements.txt')
 
 elif args.mode == 'local':
-    subprocess.call('docker build -t eb-docker:local -f Dockerfile.local .', shell=True)
+    try:
+        # pipenv lock으로 requirements.txt 생성
+        subprocess.call('pipenv lock --requirements > requirements.txt', shell=True)
+        # docker builder
+        subprocess.call('docker build -t eb-docker:local -f Dockerfile.local .', shell=True)
+    finally:
+        os.remove('requirements.txt')
 
 elif args.mode == 'dev':
-    subprocess.call('docker build -t eb-docker:dev -f Dockerfile.dev .', shell=True)
+    try:
+        # pipenv lock으로 requirements.txt 생성
+        subprocess.call('pipenv lock --requirements --dev > requirements.txt', shell=True)
+        # docker builder
+        subprocess.call('docker build -t eb-docker:dev -f Dockerfile.dev .', shell=True)
+    finally:
+        os.remove('requirements.txt')
 
 else:
     while True:
