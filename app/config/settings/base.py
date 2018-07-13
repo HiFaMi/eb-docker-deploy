@@ -31,10 +31,6 @@ SECRET_KEY = secret['SECRET_KEY']
 
 AUTH_USER_MODEL = 'members.User'
 
-
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [

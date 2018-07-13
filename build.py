@@ -34,6 +34,9 @@ elif args.mode == 'dev':
     finally:
         os.remove('requirements.txt')
 
+elif args.mode == 'production':
+    subprocess.call('docker build -t eb-docker:production -f Dockerfile.production .', shell=True)
+
 else:
     while True:
         user_input = input('Select mode:\n1: base\n2: local\n3: production\nChoice: ')
