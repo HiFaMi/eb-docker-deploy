@@ -1,5 +1,7 @@
 from .base import *
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
 
 DEBUG = True
 
@@ -12,5 +14,5 @@ DATABASES = {
     }
 }
 
-STATIC_URL = '/static/'
+
 
