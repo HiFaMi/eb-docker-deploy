@@ -6,7 +6,7 @@ secrets = json.load(open(os.path.join(SECRET_DIR, 'production.json')))
 
 DEBUG = False
 
-RUNSERVER = sys.argv[1] == 'runserver'
+RUNSERVER = 'runserver' in sys.argv
 ALLOWED_HOSTS = secrets['ALLOWED_HOSTS']
 if RUNSERVER:
     DEBUG = True
