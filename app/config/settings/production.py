@@ -10,14 +10,12 @@ WSGI_APPLICATION = 'config.wsgi.production.application'
 
 DATABASES = secrets['DATABASES']
 
-STATIC_URL = '/static/'
-
 INSTALLED_APPS += [
     'storages',
 ]
 
-DEFAULT_FILE_STORAGE = 'config.storages.S3DefaultStorage'
-STATICFILES_STORAGE = 'config.storages.S3StaticStorage'
+# DEFAULT_FILE_STORAGE = 'config.storages.S3DefaultStorage'
+# STATICFILES_STORAGE = 'config.storages.S3StaticStorage'
 
 AWS_ACCESS_KEY_ID = secrets['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = secrets['AWS_SECRET_ACCESS_KEY']
@@ -27,7 +25,12 @@ AWS_S3_REGION_NAME = secrets['AWS_S3_REGION_NAME']
 AWS_S3_SIGNATURE_VERSION = secrets['AWS_S3_SIGNATURE_VERSION']
 
 
-LOG_DIR = '/var/log/django'
+if not os.path.exists('/var/log/django'):
+    os.makedirs(os.path.join(ROOT_DIR, '.log'), exist_ok=True)
+    LOG_DIR = os.path.join(ROOT_DIR, '.log')
+else:
+    LOG_DIR = '/var/log/django'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

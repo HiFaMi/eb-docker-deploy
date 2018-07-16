@@ -1,8 +1,5 @@
 from .base import *
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
-
 DEBUG = True
 
 WSGI_APPLICATION = 'config.wsgi.local.application'

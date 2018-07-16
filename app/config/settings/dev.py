@@ -2,9 +2,6 @@ from .base import *
 
 secrets = json.load(open(os.path.join(SECRET_DIR,'dev.json')))
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
-
 DEBUG = True
 
 # django-storages
