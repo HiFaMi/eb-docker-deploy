@@ -1,39 +1,27 @@
+
 from django.core.management import BaseCommand, CommandError
+
+from config import settings
 from members.models import User
 
 
 class Command(BaseCommand):
-    help = 'Create super user!!'
-
-    def add_arguments(self, parser):
-        parser.add_argument(
-            '--username',
-            dest='username',
-            required=True,
-            help='superuser id',)
-
-        parser.add_argument(
-            '--password',
-            dest='password',
-            required=True,
-            help='superuser password',
-        )
+    help = 'Create super User'
 
     def handle(self, *args, **options):
-        username = options['username']
-        password = options['password']
+        username = settings.base.SUPER_NAME
+        password = settings.base.SUPER_PASSWORD
         email = None
 
         if User.objects.filter(username=username).exists():
-            raise CommandError("This username is exists check user name")
+            self.stdout.write(self.style.SUCCESS('This name already exists check username'))
+
         else:
             user = User.objects.create_superuser(
                 username=username,
                 email=email,
-                password=password,
+                password=password
             )
 
             user.save()
-
             self.stdout.write(self.style.SUCCESS('Successfully created superuser'))
-

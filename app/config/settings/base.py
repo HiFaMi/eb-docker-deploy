@@ -32,6 +32,8 @@ MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
 
 secret = json.load(open(os.path.join(SECRET_DIR, 'base.json')))
 SECRET_KEY = secret['SECRET_KEY']
+SUPER_NAME = secret['SUPER_NAME']
+SUPER_PASSWORD = secret['SUPER_PASSWORD']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
