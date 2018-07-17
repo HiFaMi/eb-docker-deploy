@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-pipenv lock --requirements > requirements.txt
-
-git add -f .secrets/ requirements.txt
+git add -f .secrets/
 
 eb deploy --profile fc-8th-eb --staged
 

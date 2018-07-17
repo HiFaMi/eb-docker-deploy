@@ -62,6 +62,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# AUTHENTICATION_BACKENDS
+ADMIN_USERNAME = 'admin'
+ADMIN_PASSWORD = 'pbkdf2_sha256$100000$gx64pw3HWJOZ$zPJcwUTdM0lSKqB5sOuRKOpcy8IAn5LJLeSd+J5SVGA='
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'members.backends.SettingsBackend',
+]
+
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [

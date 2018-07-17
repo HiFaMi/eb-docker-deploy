@@ -14,7 +14,7 @@ class Command(BaseCommand):
         email = None
 
         if User.objects.filter(username=username).exists():
-            self.stdout.write(self.style.SUCCESS('This name already exists check username'))
+            self.stderr.write(self.style.ERROR('This name already exists check username'))
 
         else:
             user = User.objects.create_superuser(
